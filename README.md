@@ -10,13 +10,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist https://bitbucket.org/voskobovich/yii2-bitly "*"
+php composer.phar require webkadabra/yii2-bitly "*"
 ```
 
 or add
 
 ```
-"https://bitbucket.org/voskobovich/yii2-bitly": "*"
+"webkadabra/yii2-bitly": "*"
 ```
 
 to the require section of your `composer.json` file.
