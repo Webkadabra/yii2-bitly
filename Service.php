@@ -4,7 +4,7 @@
  * User: Vitaly Voskobovich
  * Date: 10.06.14 16:03
  */
-namespace voskobovich\bitly;
+namespace webkadabra\bitly;
 
 use \yii\helpers\Json;
 
