@@ -6,29 +6,27 @@
  */
 namespace webkadabra\bitly;
 
+use \yii;
 use \yii\helpers\Json;
 
 class Service extends \yii\base\Component
 {
 	/**
-	 * Сервер Api
+	 * API server
 	 */
-	const API_SERVER = 'https://api-ssl.bitly.com';
+	const API_SERVER = 'https://api-ssl.bitly.com/';
 
 	/**
-	 * Логин в сервисе Bit.ly
 	 * @var string
 	 */
 	public $login;
 
 	/**
-	 * Ключь доступа к апи сервиса
 	 * @var string
 	 */
 	public $apiKey;
 
 	/**
-	 * Токен доступа
 	 * @var string
 	 */
 	public $accessToken;
@@ -38,10 +36,7 @@ class Service extends \yii\base\Component
 	 * @var array
 	 */
 	private $_vars = [];
-
-	/**
-	 * Инициализация
-	 */
+	
 	public function init()
 	{
 		$this->_vars['login'] = $this->login;
@@ -50,7 +45,6 @@ class Service extends \yii\base\Component
 	}
 
 	/**
-	 * Отправка запроса на сервер
 	 * @param string $url
 	 *
 	 * @return bool|mixed|string
@@ -64,9 +58,7 @@ class Service extends \yii\base\Component
 	}
 
 	/**
-	 * Отправляет запрос через CURL
 	 * @param $url
-	 *
 	 * @return bool|mixed
 	 */
 	private function curl($url)
@@ -85,7 +77,6 @@ class Service extends \yii\base\Component
 	}
 
 	/**
-	 * Пишем ошибки в логи
 	 * @param $errorData
 	 * @param string $category
 	 */
@@ -96,7 +87,6 @@ class Service extends \yii\base\Component
 	}
 
 	/**
-	 * Метод выполнения запросов
 	 * @param $method
 	 * @param array $vars
 	 * @return array
@@ -110,11 +100,10 @@ class Service extends \yii\base\Component
 		$url = self::API_SERVER . "{$method}?{$params}";
 
 		$response = $this->call($url);
-
-		if($response['status_code'] != 200)
+		if($response['errorCode'] != 0)
 			$this->log($response, 'bitly.Api');
 		else
-			return (array)$response['data'];
+			return (array)$response['results'];
 
 		return false;
 	}
