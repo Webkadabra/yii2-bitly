@@ -16,6 +16,8 @@ class Service extends \yii\base\Component
 	 */
 	const API_SERVER = 'https://api-ssl.bitly.com/';
 
+	public $apiVersion = 'v3/';
+
 	/**
 	 * @var string
 	 */
@@ -36,7 +38,7 @@ class Service extends \yii\base\Component
 	 * @var array
 	 */
 	private $_vars = [];
-	
+
 	public function init()
 	{
 		$this->_vars['login'] = $this->login;
@@ -97,13 +99,14 @@ class Service extends \yii\base\Component
 
 		$params = http_build_query($this->_vars);
 
-		$url = self::API_SERVER . "{$method}?{$params}";
+		$url = self::API_SERVER . $this->apiVersion . "{$method}?{$params}";
 
 		$response = $this->call($url);
-		if($response['errorCode'] != 0)
+
+		if($response['status_code'] != 200)
 			$this->log($response, 'bitly.Api');
 		else
-			return (array)$response['results'];
+			return (array)$response['data'];
 
 		return false;
 	}
