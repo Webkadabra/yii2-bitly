@@ -2,7 +2,7 @@
 	"name": "webkadabra/yii2-bitly",
 	"description": "Minimizer links of service Bit.ly",
 	"type": "yii2-extension",
-	"keywords": ["yii2","extension","bit;.ly","links","minimizer"],
+	"keywords": ["yii2","extension","bitly","links","minimizer"],
 	"license": "MIT",
 	"authors": [
 		{
